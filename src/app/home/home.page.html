@@ -1,12 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Contact Manager
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
+
+  <ion-list *ngFor="let contact of contacts">
+    <ion-item [routerLink]="['/contact/' + contact.completeName]" routerDirection='forward'>
+      <ion-label>{{contact.completeName}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab-button class="addButton" (click)="goToNewContact()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+
 </ion-content>

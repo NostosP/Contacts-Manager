@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goHome()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Add Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-input [(ngModel)]="firstName" placeholder="First Name"></ion-input>
+  <ion-input [(ngModel)]="lastName" placeholder="Last Name"></ion-input>
+  <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
+  <ion-input [(ngModel)]="phone" placeholder="Phone number"></ion-input>
+  <ion-textarea [(ngModel)]="notes" placeholder="Enter more information here..."></ion-textarea>
+  <div class="saveButton">
+    <ion-button (click)="saveContact()">Save</ion-button>
+  </div>
+</ion-content>
