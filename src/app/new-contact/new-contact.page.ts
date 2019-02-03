@@ -29,8 +29,7 @@ export class NewContactPage implements OnInit {
 
   saveContact() {
     const newContact = new Contact(this.firstName, this.lastName, this.email, this.phone, this.notes);
-    this.contactsService.addContact(newContact);
-    this.presentAlert();
+    this.contactsService.addContact(newContact).then(() => this.presentAlert());
   }
 
   async presentAlert() {

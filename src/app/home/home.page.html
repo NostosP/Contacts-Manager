@@ -11,13 +11,15 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
 
   <ion-list *ngFor="let contact of contacts">
-    <ion-item [routerLink]="['/contact/' + contact.completeName]" routerDirection='forward'>
+    <ion-item [routerLink]="['/contact/' + contact.completeName]" routerDirection='root'>
       <ion-label>{{contact.completeName}}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-fab-button class="addButton" (click)="goToNewContact()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button  (click)="goToNewContact()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

@@ -11,7 +11,7 @@ import { ContactsService } from '../services/contacts.service';
 export class HomePage implements OnInit {
 
   searchTerm = '';
-  contacts: any;
+  contacts: any = [];
 
   constructor(public alertController: AlertController,
               public contactService: ContactsService,
@@ -22,35 +22,14 @@ export class HomePage implements OnInit {
   }
 
   setFilteredContacts() {
-    this.contacts = this.contactService.filterContacts(this.searchTerm);
+    this.contactService.filterContacts(this.searchTerm)
+      .then((filteredContacts) => {
+        this.contacts = filteredContacts;
+      });
   }
 
   goToNewContact() {
     this.navController.navigateRoot('new-contact');
-  }
-
-  async delete(name: string) {
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      message: 'Do you want to eliminate <strong>' + name + '</strong> from your contact list?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Okay',
-          handler: () => {
-            console.log('Confirm Okay');
-          }
-        }
-      ]
-    });
-
-    await alert.present();
   }
 
 }
