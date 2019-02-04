@@ -21,6 +21,9 @@ export class HomePage implements OnInit {
     this.setFilteredContacts();
   }
 
+  /**
+   * Gets contacts filtered by the search term
+   */
   setFilteredContacts() {
     this.contactService.filterContacts(this.searchTerm)
       .then((filteredContacts) => {
@@ -28,6 +31,9 @@ export class HomePage implements OnInit {
       });
   }
 
+  /**
+   * Goes to New-Contact view
+   */
   goToNewContact() {
     this.navController.navigateRoot('new-contact');
   }

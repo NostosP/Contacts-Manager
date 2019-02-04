@@ -11,6 +11,7 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
 
   <ion-list *ngFor="let contact of contacts">
+    <!-- Goes to the Contact page -->
     <ion-item [routerLink]="['/contact/' + contact.completeName]" routerDirection='root'>
       <ion-label>{{contact.completeName}}</ion-label>
     </ion-item>

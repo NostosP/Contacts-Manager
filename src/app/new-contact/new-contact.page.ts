@@ -23,15 +23,24 @@ export class NewContactPage implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Goes to Home view
+   */
   goHome() {
     this.navController.navigateBack('/home');
   }
 
+  /**
+   * Saves the info as a new contact
+   */
   saveContact() {
     const newContact = new Contact(this.firstName, this.lastName, this.email, this.phone, this.notes);
     this.contactService.addContact(newContact).then(() => this.presentAlert());
   }
 
+  /**
+   * Tells the user the contact has been successfully saved
+   */
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Contact saved!',

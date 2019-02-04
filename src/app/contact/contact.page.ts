@@ -26,14 +26,23 @@ export class ContactPage implements OnInit {
     });
   }
 
+  /**
+   * Goes to Home view
+   */
   goHome() {
     this.navController.navigateBack('/home');
   }
 
+  /**
+   * Deletes the current contact
+   */
   async deleteContact() {
     this.contactService.deleteContact(this.title);
   }
 
+  /**
+   * Asks the user for deleting confirmation
+   */
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Warning!',
