@@ -5,17 +5,18 @@ import { Storage } from '@ionic/storage';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactsService {
+export class ContactService {
 
   constructor(private storage: Storage) { }
 
   async filterContacts(searchTerm: string) {
-    let contacts: Contact[] = [];
+    const contacts: Contact[] = [];
     let filteredContacts;
     await this.storage.forEach((value) => {
-      contacts.push(value);
+      if (value.firstName !== undefined) {
+        contacts.push(value);
+      }
     }).then(() => {
-      contacts = contacts.slice(0, contacts.length - 1); // cuts useless stuff
       filteredContacts = contacts.filter((contact) => {
         return contact.completeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
       });

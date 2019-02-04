@@ -1,5 +1,5 @@
+import { ContactService } from './../services/contact.service';
 import { Component, OnInit } from '@angular/core';
-import { ContactsService } from '../services/contacts.service';
 import { Contact  } from '../models/contact';
 import { AlertController, NavController } from '@ionic/angular';
 
@@ -17,7 +17,7 @@ export class NewContactPage implements OnInit {
   phone: string;
   notes: string;
 
-  constructor(private contactsService: ContactsService,
+  constructor(private contactService: ContactService,
               private alertController: AlertController,
               private navController: NavController) { }
 
@@ -29,7 +29,7 @@ export class NewContactPage implements OnInit {
 
   saveContact() {
     const newContact = new Contact(this.firstName, this.lastName, this.email, this.phone, this.notes);
-    this.contactsService.addContact(newContact).then(() => this.presentAlert());
+    this.contactService.addContact(newContact).then(() => this.presentAlert());
   }
 
   async presentAlert() {

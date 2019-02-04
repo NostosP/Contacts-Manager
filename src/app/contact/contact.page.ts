@@ -1,8 +1,8 @@
+import { ContactService } from './../services/contact.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, AlertController } from '@ionic/angular';
 import { Contact } from '../models/contact';
-import { ContactsService } from '../services/contacts.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +16,7 @@ export class ContactPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private navController: NavController,
-              private contactService: ContactsService,
+              private contactService: ContactService,
               private alertController: AlertController) { }
 
   ngOnInit() {

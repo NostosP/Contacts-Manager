@@ -1,6 +1,6 @@
+import { ContactService } from './../services/contact.service';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
-import { ContactsService } from '../services/contacts.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
   contacts: any = [];
 
   constructor(public alertController: AlertController,
-              public contactService: ContactsService,
+              public contactService: ContactService,
               private navController: NavController) {}
 
   ngOnInit(): void {
