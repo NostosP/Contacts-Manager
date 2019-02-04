@@ -35,6 +35,9 @@ export class HomePage implements OnInit {
       });
   }
 
+  /**
+   * Filters contacts by the tag value
+   */
   filterByTag() {
     this.contactService.filterContacts(this.searchTerm)
       .then((filteredContacts) => {

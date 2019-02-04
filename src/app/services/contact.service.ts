@@ -15,12 +15,14 @@ export class ContactService {
    */
   async filterContacts(searchTerm: string) {
     const contacts: Contact[] = [];
-    let filteredContacts;
+    let filteredContacts: Contact[];
+    // retrieves all the contacts
     await this.storage.forEach((value) => {
       if (value.firstName !== undefined) {
         contacts.push(value);
       }
     }).then(() => {
+      // filters retrieved contacts
       filteredContacts = contacts.filter((contact) => {
         return (contact.completeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
                 contact.notes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||

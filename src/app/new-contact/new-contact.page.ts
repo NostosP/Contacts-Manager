@@ -48,7 +48,6 @@ export class NewContactPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Contact saved!',
-      // message: 'This is an alert message.',
       buttons: [{
         text: 'Okay',
         handler: () => {
