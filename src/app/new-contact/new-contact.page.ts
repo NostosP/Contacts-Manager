@@ -10,13 +10,13 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class NewContactPage implements OnInit {
 
-  firstName: string;
-  lastName: string;
-  completeName: string;
-  email: string;
-  phone: string;
-  notes: string;
-  tag: string[];
+  firstName = '';
+  lastName = '';
+  completeName = '';
+  email = '';
+  phone = '';
+  notes = '';
+  tag: string[] = [];
 
   constructor(private contactService: ContactService,
               private alertController: AlertController,
@@ -38,7 +38,7 @@ export class NewContactPage implements OnInit {
     const newContact = new Contact(this.firstName, this.lastName,
                                    this.email, this.phone, this.notes,
                                    this.tag);
-    console.log(newContact);
+    console.log('New Contact', newContact);
     this.contactService.addContact(newContact).then(() => this.presentAlert());
   }
 
