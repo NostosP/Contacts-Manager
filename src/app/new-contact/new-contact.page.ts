@@ -16,6 +16,7 @@ export class NewContactPage implements OnInit {
   email: string;
   phone: string;
   notes: string;
+  tag: string[];
 
   constructor(private contactService: ContactService,
               private alertController: AlertController,
@@ -34,7 +35,10 @@ export class NewContactPage implements OnInit {
    * Saves the info as a new contact
    */
   saveContact() {
-    const newContact = new Contact(this.firstName, this.lastName, this.email, this.phone, this.notes);
+    const newContact = new Contact(this.firstName, this.lastName,
+                                   this.email, this.phone, this.notes,
+                                   this.tag);
+    console.log(newContact);
     this.contactService.addContact(newContact).then(() => this.presentAlert());
   }
 

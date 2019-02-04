@@ -31,6 +31,12 @@
       <ion-label color='primary'>Notes</ion-label>
       <ion-label text-wrap>{{contact.notes}}</ion-label>
     </ion-item>
+    <ion-item>
+      <ion-label color='primary'>Tags</ion-label>
+      <div *ngFor="let tag of contact.tag">
+        <ion-badge class="badge" color="primary">{{tag}}</ion-badge>
+      </div>
+    </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
