@@ -4,11 +4,22 @@
       Contact Manager
     </ion-title>
   </ion-toolbar>
+
+  <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Order by</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">First Name</ion-select-option>
+      <ion-select-option value="l">Last Name</ion-select-option>
+      <ion-select-option value="e">Email</ion-select-option>
+      <ion-select-option value="p">Phone</ion-select-option>
+      <ion-select-option value="n">Notes</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-header>
 
 <ion-content padding>
-
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
 
   <ion-list *ngFor="let contact of contacts">
     <!-- Goes to the Contact page -->
