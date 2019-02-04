@@ -50,8 +50,10 @@ export class ModifyContactPage implements OnInit {
     if (this.notes === '') {
       this.notes = this.contact.notes;
     }
-    if (this.tag === []) {
+    if (this.tag.length === 0) {
+      console.log('First tag', this.tag);
       this.tag = this.contact.tag;
+      console.log('Second tag', this.tag);
     }
     this.contactService.deleteContact(this.contactId).then(() => {
       const newContact = new Contact(this.firstName, this.lastName,
