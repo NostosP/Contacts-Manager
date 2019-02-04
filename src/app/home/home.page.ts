@@ -14,6 +14,7 @@ export class HomePage implements OnInit {
   searchTerm = '';
   contacts: any = [];
   orderValue = '';
+  tagValue: string;
 
   constructor(public alertController: AlertController,
               public contactService: ContactService,
@@ -30,6 +31,19 @@ export class HomePage implements OnInit {
     this.contactService.filterContacts(this.searchTerm)
       .then((filteredContacts) => {
         this.contacts = filteredContacts;
+        this.orderContacts();
+      });
+  }
+
+  filterByTag() {
+    this.contactService.filterContacts(this.searchTerm)
+      .then((filteredContacts) => {
+        this.contacts = filteredContacts;
+        if (this.tagValue !== 'All') {
+          this.contacts = this.contacts.filter((contact: Contact) => {
+            return contact.tag.includes(this.tagValue);
+          });
+        }
         this.orderContacts();
       });
   }

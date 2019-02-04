@@ -1,11 +1,11 @@
 export class Contact {
-  firstName: string;
-  lastName: string;
-  completeName: string;
-  email: string;
-  phone: string;
-  notes: string;
-  tag: string[];
+  firstName = '';
+  lastName = '';
+  completeName = '';
+  email = '';
+  phone = '';
+  notes = '';
+  tag: string[] = [];
 
   constructor(firstName: string, lastName: string, email: string,
               phone: string, notes: string, tag: string[]) {

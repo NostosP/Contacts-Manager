@@ -22,7 +22,10 @@ export class ContactService {
       }
     }).then(() => {
       filteredContacts = contacts.filter((contact) => {
-        return contact.completeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        return (contact.completeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+                contact.notes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+                contact.email.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+                contact.phone.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
       });
     });
     return filteredContacts;
