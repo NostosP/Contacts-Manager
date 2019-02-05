@@ -5,7 +5,7 @@ Contact manager implemented with Typescript, Html and CSS with the Ionic 4 frame
 ## Implementation
 
 This app consists of 4 different views:
-- Home: main view, contains the list of all the contacts saved and allows the user to text-search or filter the list with tags (Fig. 1).
+- Home: main view, contains the list of all the contacts saved. It allows the user to text-search for a particular contact, order the contact list by fields or filter the list by tags (Fig. 1).
 - New Contact: allows the user to create and save a new contact (Fig. 2).
 - Contact Page: allows the user to see the contact's info, delete the contact or modify it (Fig. 3).
 - Modify Contact: allows the user to modify some (or all) contact's info and save the changes (Fig. 4).
