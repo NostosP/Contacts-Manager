@@ -45,7 +45,7 @@
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button (click)="presentAlert()"><ion-icon name="trash"></ion-icon></ion-fab-button>
-      <ion-fab-button [routerLink]="[ '/modify-contact/' + title ]" routerDirection='forward'>
+      <ion-fab-button [routerLink]="[ '/modify-contact/' + title ]" routerDirection='root'>
         <ion-icon name="create"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>

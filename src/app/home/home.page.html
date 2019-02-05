@@ -8,7 +8,7 @@
   <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
 
   <ion-item>
-    <ion-label>Search by tag</ion-label>
+    <ion-label color='primary'>Search by tag</ion-label>
     <ion-select [(ngModel)]="tagValue" (ionChange)='filterByTag()' placeholder="Select One">
       <ion-select-option value="Family">Family</ion-select-option>
       <ion-select-option value="Friend">Friend</ion-select-option>
@@ -18,7 +18,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-label>Order by</ion-label>
+    <ion-label color='primary'>Order by field</ion-label>
     <ion-select [(ngModel)]="orderValue" (ionChange)='orderContacts()' placeholder="Select One">
       <ion-select-option value="f">First Name</ion-select-option>
       <ion-select-option value="l">Last Name</ion-select-option>

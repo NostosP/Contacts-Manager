@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button (click)="goContact()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>Modify {{contactId}}</ion-title>
   </ion-toolbar>
@@ -11,27 +13,22 @@
 
     <ion-list>
       <ion-item>
-        <ion-label color='primary'>First Name</ion-label>
         <ion-input class="input" [(ngModel)]="firstName" text-wrap placeholder='{{contact.firstName}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color='primary'>Last Name</ion-label>
         <ion-input class="input" [(ngModel)]="lastName" text-wrap placeholder='{{contact.lastName}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color='primary'>Email</ion-label>
         <ion-input class="input" [(ngModel)]="email" text-wrap placeholder='{{contact.email}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color='primary'>Phone</ion-label>
         <ion-input class="input" [(ngModel)]="phone" text-wrap placeholder='{{contact.phone}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color='primary'>Notes</ion-label>
         <ion-textarea class="input" [(ngModel)]="notes" text-wrap placeholder='{{contact.notes}}'></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label color='primary'>Tags</ion-label>
+        <ion-label>Tags</ion-label>
         <ion-select multiple='true' [(ngModel)]="tag" placeholder ='{{contact.tag}}'>
           <ion-select-option value="Family">Family</ion-select-option>
           <ion-select-option value="Friend">Friend</ion-select-option>

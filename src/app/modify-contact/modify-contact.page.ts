@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../models/contact';
 import { ContactService } from '../services/contact.service';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modify-contact',
@@ -22,13 +22,18 @@ export class ModifyContactPage implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private contactService: ContactService,
-              private navController: NavController) { }
+              private navController: NavController,
+              private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.contactId = this.route.snapshot.paramMap.get('id');
     this.contactService.getContact(this.contactId).then((contact: Contact) => {
       this.contact = contact;
     });
+  }
+
+  goContact() {
+    this.navController.navigateBack('/contact/' + this.contactId);
   }
 
   /**
@@ -60,10 +65,21 @@ export class ModifyContactPage implements OnInit {
                                      this.email, this.phone, this.notes,
                                      this.tag);
       console.log('Modified Contact', newContact);
-      this.contactService.addContact(newContact).then(() =>
-        this.navController.navigateBack('/contact/' + newContact.completeName)
+      this.contactService.addContact(newContact).then(() => {
+          this.presentLoading().then(() =>
+            this.navController.navigateRoot('/contact/' + newContact.completeName)
+          );
+        }
       );
     });
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Please wait...',
+      duration: 500
+    });
+    return await loading.present();
   }
 
 }
