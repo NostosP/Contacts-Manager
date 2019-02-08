@@ -35,6 +35,7 @@ See https://ionicframework.com/docs/installation/cli for more info.
 
 To start the app:
 - from terminal go to the directory in wich you have downloaded the project
+- run the command npm install
 - run the command ionic serve --lab
 
 
