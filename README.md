@@ -24,19 +24,17 @@ The models folder contains the class contact.ts with which a contact is modelled
 
 I used the Ionic module Storage as it provides an easy way to store key/value pairs and JSON objects. Storage uses a variety of storage engines underneath, picking the best one available depending on the platform: when running in a native app context, Storage will prioritize using SQLite, when running in the web or as a Progressive Web App, Storage will attempt to use IndexedDB, WebSQL, and localstorage, in that order.
 
----
 ## Requirements
 
 The latest versions of Node.js and npm are required to install Ionic 4. 
-To install Ionic use the command npm install -g ionic
+To install Ionic use the command **npm install -g ionic**.
 See https://ionicframework.com/docs/installation/cli for more info.
 
----
 ## Run the project
 
 To start the app:
 - from terminal go to the directory in wich you have downloaded the project
-- run the command npm install
-- run the command ionic serve --lab
+- run the command **npm install**
+- run the command **ionic serve --lab**
 
 
