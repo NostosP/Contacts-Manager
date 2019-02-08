@@ -18,14 +18,4 @@ export class Contact {
     this.tag = tag;
   }
 
-  setFirstName(newFirstName: string) {
-    this.firstName = newFirstName;
-    this.completeName = newFirstName + ' ' + this.lastName;
-  }
-
-  setLastName(newLastName: string) {
-    this.lastName = newLastName;
-    this.completeName = this.firstName + ' ' + newLastName;
-  }
-
 }

@@ -13,8 +13,8 @@ export class HomePage implements OnInit {
 
   searchTerm = '';
   contacts: any = [];
-  orderValue = '';
-  tagValue: string;
+  orderValue = 'f';
+  tagValue = 'All';
 
   constructor(public alertController: AlertController,
               public contactService: ContactService,
@@ -28,10 +28,11 @@ export class HomePage implements OnInit {
    * Gets contacts filtered by the search term
    */
   setFilteredContacts() {
+    console.log('searching');
     this.contactService.filterContacts(this.searchTerm)
       .then((filteredContacts) => {
         this.contacts = filteredContacts;
-        this.orderContacts();
+        this.filterByTag();
       });
   }
 

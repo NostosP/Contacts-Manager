@@ -18,16 +18,17 @@ Fig. 3            |  Fig. 4
 :-------------------------:|:-------------------------:
 ![](https://github.com/NostosP/Contacts-Manager/blob/master/imgs/contactPage.png "Fig. 3")  |  ![](https://github.com/NostosP/Contacts-Manager/blob/master/imgs/modifyContact.png "Fig. 4")
 
-The Model View Controller (MVC) pattern is implemented. In the src/app folder there are the 4 folders (home, contact, new-contact and modify-contact) containing the 4 views and their respective controllers (in each folder views are NAME.page.html and NAME.page.scss, controllers are NAME.page.ts).
+The Model View Controller (MVC) pattern is implemented natively in Ionic. In the src/app folder there are the 4 folders (home, contact, new-contact and modify-contact) containing the 4 views and their respective controllers (in each folder the views are NAME.page.html and NAME.page.scss, the controllers are NAME.page.ts).
 
-The models folder contains the class contact.ts with wich a contact is modelled; the services folder contains the provider contact.service.ts which has the function of operating CRUD functions on the database, connecting the controllers and the database.
+The models folder contains the class contact.ts with which a contact is modelled; the services folder contains the service contact.service.ts which has the function of operating CRUD operations on the database and passing data to the controllers and viceversa.
 
 I used the Ionic module Storage as it provides an easy way to store key/value pairs and JSON objects. Storage uses a variety of storage engines underneath, picking the best one available depending on the platform: when running in a native app context, Storage will prioritize using SQLite, when running in the web or as a Progressive Web App, Storage will attempt to use IndexedDB, WebSQL, and localstorage, in that order.
 
 ---
 ## Requirements
 
-Node.js and npm are required to install Ionic 4.
+The latest versions of Node.js and npm are required to install Ionic 4. 
+To install Ionic use the command npm install -g ionic
 See https://ionicframework.com/docs/installation/cli for more info.
 
 ---
