@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{title}}</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -45,7 +45,7 @@
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button (click)="presentAlert()"><ion-icon name="trash"></ion-icon></ion-fab-button>
-      <ion-fab-button [routerLink]="[ '/modify-contact/' + title ]" routerDirection='root'>
+      <ion-fab-button [routerLink]="[ '/modify-contact/' + name ]" routerDirection='root'>
         <ion-icon name="create"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>

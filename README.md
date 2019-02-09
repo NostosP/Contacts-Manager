@@ -18,7 +18,7 @@ Fig. 3            |  Fig. 4
 :-------------------------:|:-------------------------:
 ![](https://github.com/NostosP/Contacts-Manager/blob/master/imgs/contactPage.png "Fig. 3")  |  ![](https://github.com/NostosP/Contacts-Manager/blob/master/imgs/modifyContact.png "Fig. 4")
 
-The Model View Controller (MVC) pattern is implemented natively in Ionic. In the src/app folder there are the 4 folders (home, contact, new-contact and modify-contact) containing the 4 views and their respective controllers (in each folder the views are NAME.page.html and NAME.page.scss, the controllers are NAME.page.ts).
+Ionic natively implements the View and Controller part of the MVC pattern. In the src/app folder there are the 4 folders (home, contact, new-contact and modify-contact) containing the 4 views and their respective controllers (in each folder the views are NAME.page.html and NAME.page.scss, the controllers are NAME.page.ts).
 
 The models folder contains the class contact.ts with which a contact is modelled; the services folder contains the service contact.service.ts which has the function of operating CRUD operations on the database and passing data to the controllers and viceversa.
 

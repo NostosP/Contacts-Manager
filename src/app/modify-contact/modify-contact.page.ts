@@ -11,64 +11,71 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class ModifyContactPage implements OnInit {
 
-  contactId = '';
   contact: Contact;
-  firstName = '';
-  lastName = '';
-  email = '';
-  phone = '';
-  notes = '';
-  tag: string[] = [];
+  tempContact: Contact;
+  name = '';
+  placeholderFN = 'First Name';
+  placeholderLN = 'Last Name';
+  placeholderE = 'Email';
+  placeholderP = 'Phone';
+  placeholderN = 'Enter more information here...';
+  placeholderT = [];
 
   constructor(private route: ActivatedRoute,
               private contactService: ContactService,
               private navController: NavController,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController) {
+    this.contact = new Contact();
+    this.tempContact = new Contact();
+  }
 
   ngOnInit() {
-    this.contactId = this.route.snapshot.paramMap.get('id');
-    this.contactService.getContact(this.contactId).then((contact: Contact) => {
-      this.contact = contact;
-    });
+    this.contactService.getContact(this.route.snapshot.paramMap.get('id'))
+      .then((contact: Contact) => {
+        this.contact = contact;
+        this.name = this.contactService.getCompleteName(contact);
+        if (contact.firstName !== '') {this.placeholderFN = contact.firstName; }
+        if (contact.lastName !== '') {this.placeholderLN = contact.lastName; }
+        if (contact.email !== '') {this.placeholderE = contact.email; }
+        if (contact.phone !== '') {this.placeholderP = contact.phone; }
+        if (contact.notes !== '') {this.placeholderN = contact.notes; }
+      });
   }
 
   /**
    * Go back to contact view
    */
   goContact() {
-    this.navController.navigateBack('/contact/' + this.contactId);
+    this.navController.navigateBack('/contact/' + this.name);
   }
 
   /**
    * Saves the changes made to the contact
    */
   saveContact() {
-    if (this.firstName === '') {
-      this.firstName = this.contact.firstName;
+    if (this.tempContact.firstName === '') {
+      this.tempContact.firstName = this.contact.firstName;
     }
-    if (this.lastName === '') {
-      this.lastName = this.contact.lastName;
+    if (this.tempContact.lastName === '') {
+      this.tempContact.lastName = this.contact.lastName;
     }
-    if (this.email === '') {
-      this.email = this.contact.email;
+    if (this.tempContact.email === '') {
+      this.tempContact.email = this.contact.email;
     }
-    if (this.phone === '') {
-      this.phone = this.contact.phone;
+    if (this.tempContact.phone === '') {
+      this.tempContact.phone = this.contact.phone;
     }
-    if (this.notes === '') {
-      this.notes = this.contact.notes;
+    if (this.tempContact.notes === '') {
+      this.tempContact.notes = this.contact.notes;
     }
-    if (this.tag.length === 0) {
-      this.tag = this.contact.tag;
+    if (this.tempContact.tag.length === 0) {
+      this.tempContact.tag = this.contact.tag;
     }
-    this.contactService.deleteContact(this.contactId).then(() => {
-      const newContact = new Contact(this.firstName, this.lastName,
-                                     this.email, this.phone, this.notes,
-                                     this.tag);
-      console.log('Modified Contact', newContact);
-      this.contactService.addContact(newContact).then(() => {
+    this.contactService.deleteContact(this.contact).then(() => {
+      this.contactService.addContact(this.tempContact).then(() => {
           this.presentLoading().then(() =>
-            this.navController.navigateRoot('/contact/' + newContact.completeName)
+            this.navController.navigateRoot('/contact/'
+            + this.contactService.getCompleteName(this.tempContact))
           );
         }
       );

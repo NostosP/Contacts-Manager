@@ -11,8 +11,9 @@ import { AlertController, NavController } from '@ionic/angular';
 
 export class HomePage implements OnInit {
 
+  originalContacts: Contact[];
+  contacts: Contact[];
   searchTerm = '';
-  contacts: any = [];
   orderValue = 'f';
   tagValue = 'All';
 
@@ -21,35 +22,24 @@ export class HomePage implements OnInit {
               private navController: NavController) {}
 
   ngOnInit(): void {
-    this.setFilteredContacts();
-  }
-
-  /**
-   * Gets contacts filtered by the search term
-   */
-  setFilteredContacts() {
-    console.log('searching');
-    this.contactService.filterContacts(this.searchTerm)
-      .then((filteredContacts) => {
-        this.contacts = filteredContacts;
-        this.filterByTag();
+    this.contactService.getAllContacts()
+      .then((contacts: Contact[]) => {
+        this.originalContacts = contacts;
+        this.contacts = contacts;
       });
   }
 
   /**
-   * Filters contacts by the tag value
+   * Filters contacts by search term and tag value
    */
-  filterByTag() {
-    this.contactService.filterContacts(this.searchTerm)
-      .then((filteredContacts) => {
-        this.contacts = filteredContacts;
-        if (this.tagValue !== 'All') {
-          this.contacts = this.contacts.filter((contact: Contact) => {
-            return contact.tag.includes(this.tagValue);
-          });
-        }
-        this.orderContacts();
+  filterContacts() {
+    this.contacts = this.contactService.filterContacts(this.searchTerm, this.originalContacts);
+    if (this.tagValue !== 'All') {
+      this.contacts = this.contacts.filter((contact: Contact) => {
+        return contact.tag.includes(this.tagValue);
       });
+    }
+    this.orderContacts();
   }
 
   /**

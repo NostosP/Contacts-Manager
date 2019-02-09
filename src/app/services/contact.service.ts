@@ -10,45 +10,51 @@ export class ContactService {
   constructor(private storage: Storage) { }
 
   /**
-   * Returns contacts filtered by the search term
-   * @param searchTerm
+   * Returns all the contacts
    */
-  async filterContacts(searchTerm: string) {
+  async getAllContacts() {
     const contacts: Contact[] = [];
-    let filteredContacts: Contact[];
-    // retrieves all the contacts
     await this.storage.forEach((value) => {
       if (value.firstName !== undefined) {
         contacts.push(value);
       }
-    }).then(() => {
-      // filters retrieved contacts
-      filteredContacts = contacts.filter((contact) => {
-        return (contact.completeName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
-                contact.notes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
-                contact.email.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
-                contact.phone.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
-      });
     });
+    return contacts;
+  }
+
+  /**
+   * Returns the contacts filtered by search term
+   * @param searchTerm
+   * @param contacts
+   */
+  filterContacts(searchTerm: string, contacts: Contact[]) {
+    let filteredContacts: Contact[];
+    filteredContacts = contacts.filter((contact) => {
+      return (contact.firstName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              contact.lastName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              contact.notes.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              contact.email.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
+              contact.phone.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1);
+      });
     return filteredContacts;
   }
 
   /**
-   * Adds a new contact to the list
+   * Adds a new contact
    * @param newContact
    */
   async addContact(newContact: Contact) {
-    this.storage.set(newContact.completeName, newContact).then(() =>
-      console.log('Added new contact ', newContact.completeName)
+    this.storage.set(this.getCompleteName(newContact), newContact).then(() =>
+      console.log('Added new contact ', newContact)
     );
   }
 
   /**
-   * Deletes a contact from the list
+   * Deletes a contact
    * @param contact
    */
-  async deleteContact(contact: string) {
-    this.storage.remove(contact).then(() =>
+  async deleteContact(contact: Contact) {
+    this.storage.remove(this.getCompleteName(contact)).then(() =>
       console.log('Deleted contact ', contact)
     );
   }
@@ -59,6 +65,14 @@ export class ContactService {
    */
   getContact(key: string) {
     return this.storage.get(key);
+  }
+
+  /**
+   * Returns the complete name of a contact
+   * @param contact
+   */
+  getCompleteName(contact: Contact) {
+    return contact.firstName + ' ' + contact.lastName;
   }
 
 }

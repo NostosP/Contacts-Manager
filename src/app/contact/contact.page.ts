@@ -11,19 +11,22 @@ import { Contact } from '../models/contact';
 })
 export class ContactPage implements OnInit {
 
-  title: string;
   contact: Contact;
+  name = '';
 
   constructor(private route: ActivatedRoute,
               private navController: NavController,
               private contactService: ContactService,
-              private alertController: AlertController) { }
+              private alertController: AlertController) {
+    this.contact = new Contact();
+  }
 
   ngOnInit() {
-    this.title = this.route.snapshot.paramMap.get('id');
-    this.contactService.getContact(this.title).then((contact) => {
-      this.contact = contact;
-    });
+    this.contactService.getContact(this.route.snapshot.paramMap.get('id'))
+      .then((contact: Contact) => {
+        this.contact = contact;
+        this.name = this.contactService.getCompleteName(contact);
+      });
   }
 
   /**
@@ -37,7 +40,7 @@ export class ContactPage implements OnInit {
    * Deletes the current contact
    */
   async deleteContact() {
-    this.contactService.deleteContact(this.title);
+    this.contactService.deleteContact(this.contact);
   }
 
   /**

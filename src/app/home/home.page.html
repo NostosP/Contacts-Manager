@@ -5,11 +5,11 @@
     </ion-title>
   </ion-toolbar>
 
-  <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="setFilteredContacts()"></ion-searchbar>
+  <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionChange)="filterContacts()"></ion-searchbar>
 
   <ion-item>
     <ion-label color='primary'>Search by tag</ion-label>
-    <ion-select [(ngModel)]="tagValue" (ionChange)='filterByTag()' placeholder="Select One">
+    <ion-select [(ngModel)]="tagValue" (ionChange)='filterContacts()' placeholder="Select One">
       <ion-select-option value="Family">Family</ion-select-option>
       <ion-select-option value="Friend">Friend</ion-select-option>
       <ion-select-option value="Work">Work</ion-select-option>
@@ -33,8 +33,8 @@
 
   <ion-list *ngFor="let contact of contacts">
     <!-- Goes to the Contact page -->
-    <ion-item [routerLink]="['/contact/' + contact.completeName]" routerDirection='root'>
-      <ion-label>{{contact.completeName}}</ion-label>
+    <ion-item [routerLink]="['/contact/' + contact.firstName + ' ' + contact.lastName]" routerDirection='root'>
+      <ion-label>{{contact.firstName}} {{contact.lastName}}</ion-label>
     </ion-item>
   </ion-list>
 

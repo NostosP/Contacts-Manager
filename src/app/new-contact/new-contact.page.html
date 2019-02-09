@@ -10,14 +10,14 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-input [(ngModel)]="firstName" placeholder="First Name"></ion-input>
-  <ion-input [(ngModel)]="lastName" placeholder="Last Name"></ion-input>
-  <ion-input [(ngModel)]="email" placeholder="Email"></ion-input>
-  <ion-input [(ngModel)]="phone" placeholder="Phone number"></ion-input>
-  <ion-textarea [(ngModel)]="notes" placeholder="Enter more information here..."></ion-textarea>
+  <ion-input [(ngModel)]="contact.firstName" placeholder="First Name"></ion-input>
+  <ion-input [(ngModel)]="contact.lastName" placeholder="Last Name"></ion-input>
+  <ion-input [(ngModel)]="contact.email" placeholder="Email"></ion-input>
+  <ion-input [(ngModel)]="contact.phone" placeholder="Phone number"></ion-input>
+  <ion-textarea [(ngModel)]="contact.notes" placeholder="Enter more information here..."></ion-textarea>
   <ion-item>
     <ion-label>Tags</ion-label>
-    <ion-select multiple='true' [(ngModel)]="tag">
+    <ion-select multiple='true' [(ngModel)]="contact.tag">
       <ion-select-option value="Family">Family</ion-select-option>
       <ion-select-option value="Friend">Friend</ion-select-option>
       <ion-select-option value="Work">Work</ion-select-option>
